@@ -702,7 +702,7 @@ MonoBehaviour:
   _startMenu: {fileID: 163245701}
   _particle: {fileID: 3652315769932722894, guid: 9af7304f4794e014682d4bd1e809ef5c, type: 3}
   _textPoint: {fileID: 1167165343}
-  _textPointRecord: {fileID: 0}
+  _textPointRecord: {fileID: 1969458900}
 --- !u!212 &991819373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -764,7 +764,7 @@ Transform:
   m_GameObject: {fileID: 991819371}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 15.854022, y: 16, z: 1}
+  m_LocalScale: {x: 15.854022, y: 20.226915, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

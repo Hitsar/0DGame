@@ -25,7 +25,9 @@ public class Progress : MonoBehaviour
             transform.parent = null;
             DontDestroyOnLoad(gameObject);
             Instance = this;
+#if UNITY_WEBGL
             LoadExtern();
+#endif
         }
         else
         {
@@ -38,14 +40,18 @@ public class Progress : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Backspace))
         {
             PlayerInfo = new PlayerInfo();
+#if UNITY_WEBGL
             Save();
+#endif
         }
     }
 
     public void Save()
     {
         string jsonString = JsonUtility.ToJson(PlayerInfo);
+#if UNITY_WEBGL
         SaveExtern(jsonString);
+#endif
     }
 
     public void SetPlayerInfo(string value)

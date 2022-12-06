@@ -32,7 +32,9 @@ public class Game : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo._point.ToString();
-        ShowAdv();
+#if UNITY_WEBGL
+      //  ShowAdv();
+#endif
     }
     private void Update()
     {
@@ -40,7 +42,7 @@ public class Game : MonoBehaviour
         {
             _startMenu.SetActive(false);
             Instantiate(_particle, Input.mousePosition, Quaternion.identity);
-            StartCoroutine("color");
+            StartCoroutine(color());
             _ = 0;
         }
 
@@ -58,12 +60,17 @@ public class Game : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
-            ShowAdv();
+#if UNITY_WEBGL
+          //  ShowAdv();
+#endif
             if (Progress.Instance.PlayerInfo._point < _point)
             {
                 Progress.Instance.PlayerInfo._point = _point;
-                SetToLeaderboard(Progress.Instance.PlayerInfo._point);
-                Progress.Instance.Save();
+#if UNITY_WEBGL
+
+          //      SetToLeaderboard(Progress.Instance.PlayerInfo._point);
+           //     Progress.Instance.Save();
+#endif
             }
             _diedMenu.SetActive(true);
         }
