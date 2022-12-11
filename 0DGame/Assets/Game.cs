@@ -33,7 +33,7 @@ public class Game : MonoBehaviour
         _startMenu.SetActive(true);
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo._point.ToString();
 #if UNITY_WEBGL
-      //  ShowAdv();
+        ShowAdv();
 #endif
     }
     private void Update()
@@ -61,15 +61,15 @@ public class Game : MonoBehaviour
         if (_health <= 0)
         {
 #if UNITY_WEBGL
-          //  ShowAdv();
+            ShowAdv();
 #endif
             if (Progress.Instance.PlayerInfo._point < _point)
             {
                 Progress.Instance.PlayerInfo._point = _point;
 #if UNITY_WEBGL
 
-          //      SetToLeaderboard(Progress.Instance.PlayerInfo._point);
-           //     Progress.Instance.Save();
+                SetToLeaderboard(Progress.Instance.PlayerInfo._point);
+                Progress.Instance.Save();
 #endif
             }
             _diedMenu.SetActive(true);
