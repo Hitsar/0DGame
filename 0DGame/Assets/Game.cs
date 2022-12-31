@@ -43,7 +43,7 @@ public class Game : MonoBehaviour
             _startMenu.SetActive(false);
             Instantiate(_particle, Input.mousePosition, Quaternion.identity);
             StartCoroutine(color());
-            _ = 0;
+            _--;
         }
 
         if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
@@ -60,6 +60,7 @@ public class Game : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
+            _spriteRenderer.color = Color.white;
 #if UNITY_WEBGL
             ShowAdv();
 #endif
@@ -67,12 +68,12 @@ public class Game : MonoBehaviour
             {
                 Progress.Instance.PlayerInfo._point = _point;
 #if UNITY_WEBGL
-
                 SetToLeaderboard(Progress.Instance.PlayerInfo._point);
                 Progress.Instance.Save();
 #endif
             }
             _diedMenu.SetActive(true);
+            gameObject.SetActive(false);
         }
     }
     private void Point()
