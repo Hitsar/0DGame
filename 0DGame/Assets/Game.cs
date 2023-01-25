@@ -32,9 +32,7 @@ public class Game : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo._point.ToString();
-#if UNITY_WEBGL
         ShowAdv();
-#endif
     }
     private void Update()
     {
@@ -42,15 +40,15 @@ public class Game : MonoBehaviour
         {
             _startMenu.SetActive(false);
             Instantiate(_particle, Input.mousePosition, Quaternion.identity);
-            StartCoroutine(color());
+            StartCoroutine(Color());
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == UnityEngine.Color.green)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != UnityEngine.Color.green)
         {
             TakeDamage();
         }
@@ -60,17 +58,14 @@ public class Game : MonoBehaviour
         _health--;
         if (_health <= 0)
         {
-            _spriteRenderer.color = Color.white;
-#if UNITY_WEBGL
+            _spriteRenderer.color = UnityEngine.Color.white;
+
             ShowAdv();
-#endif
             if (Progress.Instance.PlayerInfo._point < _point)
             {
                 Progress.Instance.PlayerInfo._point = _point;
-#if UNITY_WEBGL
                 SetToLeaderboard(Progress.Instance.PlayerInfo._point);
                 Progress.Instance.Save();
-#endif
             }
             _diedMenu.SetActive(true);
             gameObject.SetActive(false);
@@ -87,14 +82,14 @@ public class Game : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    private IEnumerator color()
+    private IEnumerator Color()
     {
         while (true)
         {
             if (Random.Range(0, 10) > 0)
                 _spriteRenderer.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
             else
-                _spriteRenderer.color = new Color(0, 1, 0);
+                _spriteRenderer.color = UnityEngine.Color.green;
 
             yield return new WaitForSeconds(timer);
         }
