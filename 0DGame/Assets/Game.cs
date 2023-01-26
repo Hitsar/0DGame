@@ -13,14 +13,13 @@ public class Game : MonoBehaviour
 
 
     [SerializeField] private int _health;
-    [SerializeField] private float timer;
+    [SerializeField] private float _timer;
 
     [SerializeField] private GameObject _diedMenu;
     [SerializeField] private GameObject _startMenu;
 
-    [SerializeField] private GameObject _particle;
-
     [SerializeField] private TextMeshProUGUI _textPoint;
+    [SerializeField] private TextMeshProUGUI _textHealth;
     [SerializeField] private TextMeshProUGUI _textPointRecord;
 
     private SpriteRenderer _spriteRenderer;
@@ -34,31 +33,34 @@ public class Game : MonoBehaviour
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo._point.ToString();
         ShowAdv();
     }
+
     private void Update()
     {
         if (Input.GetMouseButtonUp(0) && _ > 0)
         {
             _startMenu.SetActive(false);
-            Instantiate(_particle, Input.mousePosition, Quaternion.identity);
-            StartCoroutine(Color());
+            StartCoroutine(RandomColor());
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == UnityEngine.Color.green)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != UnityEngine.Color.green)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
         {
             TakeDamage();
         }
     }
+
     private void TakeDamage()
     {
         _health--;
+        _textHealth.text = _health.ToString();
+
         if (_health <= 0)
         {
-            _spriteRenderer.color = UnityEngine.Color.white;
+            _spriteRenderer.color = Color.white;
 
             ShowAdv();
             if (Progress.Instance.PlayerInfo._point < _point)
@@ -71,27 +73,28 @@ public class Game : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
     private void Point()
     {
         _point++;
         _textPoint.text = _point.ToString();
-        Instantiate(_particle, Input.mousePosition, Quaternion.identity);
     }
 
     public void Restart()
     {
         SceneManager.LoadScene(0);
     }
-    private IEnumerator Color()
+
+    private IEnumerator RandomColor()
     {
         while (true)
         {
             if (Random.Range(0, 10) > 0)
                 _spriteRenderer.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
             else
-                _spriteRenderer.color = UnityEngine.Color.green;
+                _spriteRenderer.color = Color.green;
 
-            yield return new WaitForSeconds(timer);
+            yield return new WaitForSeconds(_timer);
         }
     }
 }
