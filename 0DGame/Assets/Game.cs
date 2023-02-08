@@ -30,13 +30,13 @@ public class Game : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
-        _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo._point.ToString();
+        _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo.Point.ToString();
         ShowAdv();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonUp(0) && _ > 0)
+        if (Input.GetMouseButtonDown(0) && _ > 0)
         {
             _startMenu.SetActive(false);
             StartCoroutine(RandomColor());
@@ -63,10 +63,10 @@ public class Game : MonoBehaviour
             _spriteRenderer.color = Color.white;
 
             ShowAdv();
-            if (Progress.Instance.PlayerInfo._point < _point)
+            if (Progress.Instance.PlayerInfo.Point < _point)
             {
-                Progress.Instance.PlayerInfo._point = _point;
-                SetToLeaderboard(Progress.Instance.PlayerInfo._point);
+                Progress.Instance.PlayerInfo.Point = _point;
+                SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
                 Progress.Instance.Save();
             }
             _diedMenu.SetActive(true);
@@ -90,7 +90,7 @@ public class Game : MonoBehaviour
         while (true)
         {
             if (Random.Range(0, 10) > 0)
-                _spriteRenderer.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+                _spriteRenderer.color = new Color(Random.Range(0, 1.0f), Random.Range(0, 0.5f), Random.Range(0, 1.0f));
             else
                 _spriteRenderer.color = Color.green;
 

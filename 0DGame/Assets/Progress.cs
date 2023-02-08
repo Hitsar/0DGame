@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class PlayerInfo
 {
-    public int _point;
+    public int Point;
 }
 
 public class Progress : MonoBehaviour
 {
     public PlayerInfo PlayerInfo;
+
     [DllImport("__Internal")]
     private static extern void SaveExtern(string date);
     [DllImport("__Internal")]
@@ -32,17 +33,6 @@ public class Progress : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Backspace))
-        {
-            PlayerInfo = new PlayerInfo();
-#if UNITY_WEBGL
-            Save();
-#endif
         }
     }
 
