@@ -12,6 +12,8 @@ public class Game : MonoBehaviour
     private static extern void SetToLeaderboard(int value);
 
 
+    [SerializeField] private GameObject _recordText, _guideText, _restartButton, _healthText, _pointText;
+
     [SerializeField] private int _health;
     [SerializeField] private float _timer;
 
@@ -31,6 +33,10 @@ public class Game : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo.Point.ToString();
+
+        LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setDelay(0.2f).setEase(LeanTweenType.easeOutElastic);
+        LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.5f).setEase(LeanTweenType.easeOutElastic);
+
         ShowAdv();
     }
 
@@ -58,8 +64,12 @@ public class Game : MonoBehaviour
         _health--;
         _textHealth.text = _health.ToString();
 
+        LeanTween.scale(_healthText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
+        _healthText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+
         if (_health <= 0)
         {
+            LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.9f).setEase(LeanTweenType.easeOutQuint);
             _spriteRenderer.color = Color.white;
 
             ShowAdv();
@@ -78,6 +88,9 @@ public class Game : MonoBehaviour
     {
         _point++;
         _textPoint.text = _point.ToString();
+
+        LeanTween.scale(_pointText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
+        _pointText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 
     public void Restart()
