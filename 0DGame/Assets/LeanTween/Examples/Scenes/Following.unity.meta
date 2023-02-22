@@ -1,7 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:0DGame/Assets/LeanTween/Examples/Scenes/Following.unity.meta
 guid: ae5e9d334639a484786a9badbf5b387a
 timeCreated: 1535208261
 licenseType: Store
+========
+guid: 2fb081ef63f8c4c92a76f0b593f7abb0
+>>>>>>>> parent of 82904f9 (LeanTween -> DOTween):0DGame/Assets/LeanTween/Examples/Models/LeanTween-Icon.blend.zip.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
