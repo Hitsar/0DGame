@@ -35,13 +35,13 @@ public class Game : MonoBehaviour
         _startMenu.SetActive(true);
         _textPointRecord.text = "Рекорд: " + Progress.Instance.PlayerInfo.Point.ToString();
 
-        _recordText.transform.DOScale(new Vector3(1, 1, 1), 3f).SetDelay(0.07f).SetEase(Ease.OutElastic);
-        _guideText.transform.DOScale(new Vector3(1, 1, 1), 2.3f).SetDelay(0.32f).SetEase(Ease.OutElastic).OnComplete(() =>
+        _recordText.transform.DOScale(new Vector3(1, 1, 1), 3f).SetDelay(0.06f).SetEase(Ease.OutElastic);
+        _guideText.transform.DOScale(new Vector3(1, 1, 1), 2.3f).SetDelay(0.31f).SetEase(Ease.OutElastic).OnComplete(() =>
         {
             _guideText.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.8f).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
         });
 
-        //ShowAdv();
+        ShowAdv();
     }
 
     private void Update()
@@ -79,12 +79,12 @@ public class Game : MonoBehaviour
             });
             _spriteRenderer.color = Color.white;
 
-            //  ShowAdv();
+              ShowAdv();
             if (Progress.Instance.PlayerInfo.Point < _point)
             {
                 Progress.Instance.PlayerInfo.Point = _point;
-                //       SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
-                //       Progress.Instance.Save();
+                       SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
+                       Progress.Instance.Save();
             }
             _diedMenu.SetActive(true);
             gameObject.SetActive(false);
