@@ -32,10 +32,10 @@ public class Game : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
-        _textPointRecord.text = "–ÂÍÓ‰: " + Progress.Instance.PlayerInfo.Point.ToString();
+        _textPointRecord.text = "√ê√•√™√Æ√∞√§: " + Progress.Instance.PlayerInfo.Point.ToString();
 
-        LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setDelay(0.2f).setEase(LeanTweenType.easeOutElastic);
-        LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.5f).setEase(LeanTweenType.easeOutElastic);
+        LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setEase(LeanTweenType.easeOutElastic);
+        LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.3f).setEase(LeanTweenType.easeOutElastic);
 
         ShowAdv();
     }
@@ -49,11 +49,11 @@ public class Game : MonoBehaviour
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green && _ <= 0)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green && _ <= 0)
         {
             TakeDamage();
         }
@@ -69,7 +69,7 @@ public class Game : MonoBehaviour
 
         if (_health <= 0)
         {
-            LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.9f).setEase(LeanTweenType.easeOutQuint);
+            LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.8f).setEase(LeanTweenType.easeOutQuint);
             _spriteRenderer.color = Color.white;
 
             ShowAdv();
