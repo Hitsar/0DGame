@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Runtime.InteropServices;
 using TMPro;
@@ -32,12 +33,15 @@ public class Game : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
-        _textPointRecord.text = "ÃÃ¥ÃªÃ®Ã°Ã¤: " + Progress.Instance.PlayerInfo.Point.ToString();
+        _textPointRecord.text = "Ðåêîðä: " + Progress.Instance.PlayerInfo.Point.ToString();
 
-        LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setEase(LeanTweenType.easeOutElastic);
-        LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.3f).setEase(LeanTweenType.easeOutElastic);
+        _recordText.transform.DOScale(new Vector3(1, 1, 1), 3f).SetDelay(0.07f).SetEase(Ease.OutElastic);
+        _guideText.transform.DOScale(new Vector3(1, 1, 1), 2.3f).SetDelay(0.32f).SetEase(Ease.OutElastic).OnComplete(() =>
+        {
+            _guideText.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.8f).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
+        });
 
-        ShowAdv();
+        //ShowAdv();
     }
 
     private void Update()
@@ -49,11 +53,11 @@ public class Game : MonoBehaviour
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green && _ <= 0)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green && _ <= 0)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
         {
             TakeDamage();
         }
@@ -64,20 +68,23 @@ public class Game : MonoBehaviour
         _health--;
         _textHealth.text = _health.ToString();
 
-        LeanTween.scale(_healthText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
-        _healthText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        _healthText.transform.DOScale(new Vector3(1, 1, 1), 0.6f).SetEase(Ease.OutElastic);
+        _healthText.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
 
         if (_health <= 0)
         {
-            LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.8f).setEase(LeanTweenType.easeOutQuint);
+            _restartButton.transform.DOLocalMoveY(0, 0.9f).SetEase(Ease.OutCubic).OnComplete(() =>
+            {
+                _restartButton.transform.DOScale(new Vector3(1, 1, 1), 0.9f).SetEase(Ease.OutElastic);
+            });
             _spriteRenderer.color = Color.white;
 
-            ShowAdv();
+            //  ShowAdv();
             if (Progress.Instance.PlayerInfo.Point < _point)
             {
                 Progress.Instance.PlayerInfo.Point = _point;
-                SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
-                Progress.Instance.Save();
+                //       SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
+                //       Progress.Instance.Save();
             }
             _diedMenu.SetActive(true);
             gameObject.SetActive(false);
@@ -89,8 +96,8 @@ public class Game : MonoBehaviour
         _point++;
         _textPoint.text = _point.ToString();
 
-        LeanTween.scale(_pointText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
-        _pointText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        _pointText.transform.DOScale(new Vector3(1, 1, 1), 0.6f).SetEase(Ease.OutElastic);
+        _pointText.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     public void Restart()
