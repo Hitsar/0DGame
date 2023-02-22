@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Runtime.InteropServices;
 using TMPro;
@@ -33,9 +32,8 @@ public class Game : MonoBehaviour
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _startMenu.SetActive(true);
-        _textPointRecord.text = "–ÂÍÓ‰: " + Progress.Instance.PlayerInfo.Point.ToString();
+        _textPointRecord.text = "√ê√•√™√Æ√∞√§: " + Progress.Instance.PlayerInfo.Point.ToString();
 
-<<<<<<< HEAD
 <<<<<<< HEAD
         LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setEase(LeanTweenType.easeOutElastic);
         LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.3f).setEase(LeanTweenType.easeOutElastic);
@@ -43,15 +41,8 @@ public class Game : MonoBehaviour
         LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setDelay(0.2f).setEase(LeanTweenType.easeOutElastic);
         LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.5f).setEase(LeanTweenType.easeOutElastic);
 >>>>>>> parent of 82904f9 (LeanTween -> DOTween)
-=======
-        _recordText.transform.DOScale(new Vector3(1, 1, 1), 3f).SetDelay(0.07f).SetEase(Ease.OutElastic);
-        _guideText.transform.DOScale(new Vector3(1, 1, 1), 2.3f).SetDelay(0.32f).SetEase(Ease.OutElastic).OnComplete(() =>
-        {
-            _guideText.transform.DOScale(new Vector3(1.1f, 1.1f, 1.1f), 0.8f).SetEase(Ease.InOutCubic).SetLoops(-1, LoopType.Yoyo);
-        });
->>>>>>> parent of 21bc703 (Merge branch 'master' of https://github.com/Hitsar/0DGame)
 
-        //ShowAdv();
+        ShowAdv();
     }
 
     private void Update()
@@ -63,11 +54,11 @@ public class Game : MonoBehaviour
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green && _ <= 0)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green && _ <= 0)
         {
             TakeDamage();
         }
@@ -78,31 +69,24 @@ public class Game : MonoBehaviour
         _health--;
         _textHealth.text = _health.ToString();
 
-        _healthText.transform.DOScale(new Vector3(1, 1, 1), 0.6f).SetEase(Ease.OutElastic);
-        _healthText.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        LeanTween.scale(_healthText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
+        _healthText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
 
         if (_health <= 0)
         {
-<<<<<<< HEAD
 <<<<<<< HEAD
             LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.8f).setEase(LeanTweenType.easeOutQuint);
 =======
             LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.9f).setEase(LeanTweenType.easeOutQuint);
 >>>>>>> parent of 82904f9 (LeanTween -> DOTween)
-=======
-            _restartButton.transform.DOLocalMoveY(0, 0.9f).SetEase(Ease.OutCubic).OnComplete(() =>
-            {
-                _restartButton.transform.DOScale(new Vector3(1, 1, 1), 0.9f).SetEase(Ease.OutElastic);
-            });
->>>>>>> parent of 21bc703 (Merge branch 'master' of https://github.com/Hitsar/0DGame)
             _spriteRenderer.color = Color.white;
 
-            //  ShowAdv();
+            ShowAdv();
             if (Progress.Instance.PlayerInfo.Point < _point)
             {
                 Progress.Instance.PlayerInfo.Point = _point;
-                //       SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
-                //       Progress.Instance.Save();
+                SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
+                Progress.Instance.Save();
             }
             _diedMenu.SetActive(true);
             gameObject.SetActive(false);
@@ -114,8 +98,8 @@ public class Game : MonoBehaviour
         _point++;
         _textPoint.text = _point.ToString();
 
-        _pointText.transform.DOScale(new Vector3(1, 1, 1), 0.6f).SetEase(Ease.OutElastic);
-        _pointText.transform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+        LeanTween.scale(_pointText, new Vector3(1, 1, 1), 0.6f).setEase(LeanTweenType.easeOutElastic);
+        _pointText.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
     }
 
     public void Restart()
