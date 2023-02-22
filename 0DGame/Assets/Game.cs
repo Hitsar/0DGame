@@ -34,13 +34,8 @@ public class Game : MonoBehaviour
         _startMenu.SetActive(true);
         _textPointRecord.text = "Ðåêîðä: " + Progress.Instance.PlayerInfo.Point.ToString();
 
-<<<<<<< HEAD
         LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setEase(LeanTweenType.easeOutElastic);
         LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.3f).setEase(LeanTweenType.easeOutElastic);
-=======
-        LeanTween.scale(_recordText, new Vector3(1, 1, 1), 3f).setDelay(0.2f).setEase(LeanTweenType.easeOutElastic);
-        LeanTween.scale(_guideText, new Vector3(1, 1, 1), 3f).setDelay(0.5f).setEase(LeanTweenType.easeOutElastic);
->>>>>>> parent of 82904f9 (LeanTween -> DOTween)
 
         ShowAdv();
     }
@@ -74,11 +69,7 @@ public class Game : MonoBehaviour
 
         if (_health <= 0)
         {
-<<<<<<< HEAD
             LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.8f).setEase(LeanTweenType.easeOutQuint);
-=======
-            LeanTween.scale(_restartButton, new Vector3(1, 1, 1), 0.9f).setEase(LeanTweenType.easeOutQuint);
->>>>>>> parent of 82904f9 (LeanTween -> DOTween)
             _spriteRenderer.color = Color.white;
 
             ShowAdv();
