@@ -1,5 +1,11 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:0DGame/Assets/LeanTween/Examples/Models/LeanTween-Icon.blend.zip.meta
 guid: 2fb081ef63f8c4c92a76f0b593f7abb0
+========
+guid: 0bd7a031b280f4530b42f2591cf98025
+timeCreated: 1533844429
+licenseType: Store
+>>>>>>>> parent of 82904f9 (LeanTween -> DOTween):0DGame/Assets/LeanTween/Examples/Scenes/TestingZLegacyExt.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
