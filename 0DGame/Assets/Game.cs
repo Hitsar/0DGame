@@ -53,11 +53,11 @@ public class Game : MonoBehaviour
             _--;
         }
 
-        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green)
+        if (Input.GetMouseButtonDown(0) && _spriteRenderer.color == Color.green && _ <= 0)
         {
             Point();
         }
-        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green)
+        else if (Input.GetMouseButtonDown(0) && _spriteRenderer.color != Color.green && _ <= 0)
         {
             TakeDamage();
         }
