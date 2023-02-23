@@ -12,15 +12,21 @@ public class Game : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void SetToLeaderboard(int value);
 
+    [Header("Animations")]
+    [SerializeField] private GameObject _recordText;
+    [SerializeField] private GameObject _guideText;
+    [SerializeField] private GameObject _restartButton;
+    [SerializeField] private GameObject _healthText;
+    [SerializeField] private GameObject _pointText;
 
-    [SerializeField] private GameObject _recordText, _guideText, _restartButton, _healthText, _pointText;
-
+    [Header("Basic")]
     [SerializeField] private int _health;
     [SerializeField] private float _timer;
 
     [SerializeField] private GameObject _diedMenu;
     [SerializeField] private GameObject _startMenu;
 
+    [Header("Texts")]
     [SerializeField] private TextMeshProUGUI _textPoint;
     [SerializeField] private TextMeshProUGUI _textHealth;
     [SerializeField] private TextMeshProUGUI _textPointRecord;
@@ -79,12 +85,12 @@ public class Game : MonoBehaviour
             });
             _spriteRenderer.color = Color.white;
 
-              ShowAdv();
+            ShowAdv();
             if (Progress.Instance.PlayerInfo.Point < _point)
             {
                 Progress.Instance.PlayerInfo.Point = _point;
-                       SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
-                       Progress.Instance.Save();
+                SetToLeaderboard(Progress.Instance.PlayerInfo.Point);
+                Progress.Instance.Save();
             }
             _diedMenu.SetActive(true);
             gameObject.SetActive(false);
